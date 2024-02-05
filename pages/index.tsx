@@ -7,7 +7,7 @@ const Home: React.FC = () => {
 	const [localTime, setLocalTime] = useState<string>('');
 	const lastApiTimestampRef = useRef<number>(0);
 	const [timeDiscrepancy, setTimeDiscrepancy] = useState<string>(
-		'0 days 0 hours 0 minutes 0 seconds'
+		'0 days 0 hours 0 min 0 s'
 	);
 
 	const fetchData = async () => {
@@ -45,7 +45,9 @@ const Home: React.FC = () => {
 				(discrepancyInMilliseconds % (1000 * 60)) / 1000
 			);
 
-			const discrepancyString = `${days} days ${hours} hours ${minutes} minutes ${seconds}`;
+			const discrepancyString = `${days} days ${hours} ${
+				hours <= 1 ? `hour` : `hours`
+			} ${minutes} min ${seconds}`;
 
 			setApiTime(apiData.time);
 			setLocalTime(new Date().toLocaleTimeString());
@@ -65,16 +67,13 @@ const Home: React.FC = () => {
 	}, []);
 
 	return (
-		<div className="min-h-screen flex items-center justify-center bg-gray-100">
-			<div className="text-center p-8 bg-white rounded shadow-md">
-				<h1 className="text-3xl font-bold mb-4">Time Comparison App</h1>
-				<TimeComparison
-					apiTime={apiTime}
-					localTime={localTime}
-					//@ts-ignore
-					timeDiscrepancy={timeDiscrepancy}
-				/>
-			</div>
+		<div className="min-h-screen flex items-center justify-center">
+			<TimeComparison
+				apiTime={apiTime}
+				localTime={localTime}
+				//@ts-ignore
+				timeDiscrepancy={timeDiscrepancy}
+			/>
 		</div>
 	);
 };
