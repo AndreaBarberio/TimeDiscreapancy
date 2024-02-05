@@ -12,11 +12,18 @@ const TimeComparison: React.FC<TimeComparisonProps> = ({
 	timeDiscrepancy,
 }) => {
 	return (
-		<div>
-			<h2>Time Comparison Results</h2>
-			<p>API Time: {apiTime}</p>
-			<p>Local Time: {localTime}</p>
-			<p>Time Discrepancy: {timeDiscrepancy} seconds</p>
+		<div className="bg-gray-100 p-6 rounded-lg shadow-md max-w-md mx-auto mt-8">
+			<h2 className="text-2xl font-semibold mb-4">Time Comparison Results</h2>
+			<p className="mb-2">
+				<span className="font-semibold">API Time:</span> {apiTime}
+			</p>
+			<p className="mb-2">
+				<span className="font-semibold">Local Time:</span> {localTime}
+			</p>
+			<p>
+				<span className="font-semibold">Time Discrepancy:</span>{' '}
+				{timeDiscrepancy} seconds
+			</p>
 		</div>
 	);
 };
